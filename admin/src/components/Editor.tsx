@@ -49,24 +49,7 @@ const TinyEditor = ({ onChange, name, value, disabled }: TinyEditorProps) => {
                 onChange({ target: { name, value: editorContent } });
             }}
             init={{
-                ...pluginConfig?.data?.editorConfig,
-                images_upload_handler: async (blobInfo) => {
-                    console.log("images_upload_handler calling...")
-                    const formData = new FormData();
-                    formData.append('files', blobInfo.blob());
-                    const response = await fetch(uploadUrl, {
-                        method: 'POST',
-                        headers: {
-                            Authorization: 'Bearer ',
-                        },
-                        body: formData,
-                    })
-                        .then((response) => response.json())
-                        .catch(function (err) {
-                            console.log('error:', err);
-                        });
-                    return response?.[0]?.url || '';
-                },
+                ...pluginConfig?.data?.editorConfig, 
             }}
         />
     ) : (
