@@ -51,6 +51,7 @@ const TinyEditor = ({ onChange, name, value, disabled }: TinyEditorProps) => {
             init={{
                 ...pluginConfig?.data?.editorConfig,
                 images_upload_handler: async (blobInfo) => {
+                    console.log("images_upload_handler calling...")
                     const formData = new FormData();
                     formData.append('files', blobInfo.blob());
                     const response = await fetch(uploadUrl, {
